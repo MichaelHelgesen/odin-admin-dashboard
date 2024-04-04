@@ -1,0 +1,49 @@
+.content {                  
+    background-color: rgb(226 232 240);
+    display: grid;
+    grid-template: 1fr / 3fr 1fr;
+    grid-template-areas:
+    "projects featured";
+    grid-area: content;     
+}                           
+
+.featured {
+   display: grid;
+   grid-template: repeat(2, 1fr) / 1fr;
+}
+
+.header {
+   display: grid;
+   grid-area: header;
+   grid-template: 1fr 1fr / 2fr 1fr;
+   grid-template-areas:
+   "search user-profile"
+   "welcome upload-menu";
+}
+
+.projects {
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(2, 1fr);
+}
+
+.sidebar {
+   background-color: rgb(50 170 250);
+   display: grid;
+   grid-template: 1fr 1fr 1fr / 1fr;
+   grid-area: sidebar;
+   grid-template-areas:
+   "logo"
+   "user-menu"
+   "settings-menu";
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
+    "sidebar header"
+    "sidebar content";
+    height: 100vh;
+    width: 100vw;
+}
