@@ -1,11 +1,51 @@
+* {
+   --accent-color: rgb(50 170 250);
+   --background-color: rgb(226 232 240);
+
+   box-sizing: border-box; 
+   list-style: none;
+   margin: 0;
+   padding: 0;
+}
+
 .content {                  
-    background-color: rgb(226 232 240);
+    background-color: var(--background-color); 
     display: grid;
+    grid-area: content;     
     grid-template: 1fr / 3fr 1fr;
     grid-template-areas:
     "projects featured";
-    grid-area: content;     
 }                           
+
+.element {
+    display: grid;
+    gap: 5px;
+    grid-template: repeat(3, 1fr) / repeat(2, 1fr);
+} 
+
+.element > div {
+    background-color: var(--logo-element); 
+}
+
+.element div.one {
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+}
+
+.element div.two {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+}
+
+.element div.three {
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+}
+
+.element div.four {
+    grid-column: 2 / 3;
+    grid-row: 2 / 4;
+}
 
 .featured {
    display: grid;
@@ -21,29 +61,53 @@
    "welcome upload-menu";
 }
 
+.logo {
+    display: grid;
+    gap: 10px;
+    grid-auto-flow: column;
+    grid-template: 1fr / 1fr 4fr;
+}
+
 .projects {
+    display: grid;
+    grid-template: 30px 1fr / 1fr; 
+}
+
+.projects-wrap {
     display: grid;
     grid-template: repeat(3, 1fr) / repeat(2, 1fr);
 }
 
 .sidebar {
-   background-color: rgb(50 170 250);
+   --logo-element: rgb(255 255 255);
+   --sidebar-menu-items: rgb(255 255 255);
+
+   background-color: var(--accent-color);
    display: grid;
-   grid-template: 1fr 1fr 1fr / 1fr;
+   gap: 50px;
    grid-area: sidebar;
+   grid-template: 45px repeat(2, min-content)/ 1fr;
    grid-template-areas:
    "logo"
    "user-menu"
    "settings-menu";
 }
 
+.sidebar ul li {
+   color: var(--sidebar-menu-items); 
+}
+.title {
+   align-self: center; 
+   color: var(--logo-element); 
+}
+
 .wrapper {
     display: grid;
-    grid-template-columns: 1fr 3fr;
-    grid-template-rows: 1fr 1fr;
     grid-template-areas:
     "sidebar header"
     "sidebar content";
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr 1fr;
     height: 100vh;
     width: 100vw;
 }
