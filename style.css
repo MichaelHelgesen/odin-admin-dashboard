@@ -1,8 +1,14 @@
+@font-face {
+    font-family: "Roboto";
+    src: url(assets/fonts/Roboto/Roboto-Regular.ttf);
+}
+
 * {
    --accent-color: rgb(50 170 250);
    --background-color: rgb(226 232 240);
 
    box-sizing: border-box; 
+   font-family: Roboto;
    list-style: none;
    margin: 0;
    padding: 0;
@@ -20,13 +26,16 @@
 
 .announcements--posts {
    background-color: var(--content-background-color);
+   border-radius: var(--content-border-radius);
    display: grid; 
    grid-template: repeat(3, 1fr) / 1fr;
 }
 
 .content {                  
     --content-background-color: rgb(255 255 255);
+    --content-border-radius: 5px;
     --content-gap: 30px;
+    --content-title-gap: 6px;
 
     background-color: var(--background-color);  
     display: grid;
@@ -80,84 +89,96 @@
 
 .featured > div {
     display: grid;
+    gap: var(--content-title-gap);
     grid-template: 30px 1fr / 1fr;
 }
 
 .header {
+   align-items: center;
    display: grid;
+   gap: 30px;
    grid-area: header;
-   grid-template: 1fr 1fr / 2fr 1fr;
+   grid-template: min-content min-content / 2fr 1fr;
    grid-template-areas:
    "search user-profile"
    "welcome upload-menu";
+   margin: 30px;
 }
 
 .logo {
     display: grid;
     gap: 10px;
     grid-auto-flow: column;
-    grid-template: 1fr / 1fr 4fr;
+    grid-template: 1fr / 1fr 5fr;
 }
 
 .project {
-    --project-margin: 30px;
-    --project-padding: 0 10px;
+    --project-padding: 30px 20px;
 
    background: var(--content-background-color); 
+   border-radius: 5px;
    display: grid;
-   grid-template: repeat(3, 1fr) / 10px 1fr;
+   grid-template: 1fr / 8px 1fr;
    grid-template-areas:
-   "border title"
    "border text"
-   "border icons";
 }
 
 .project .border {
     background-color: rgb(240 180 41);
+    border-radius: 5px 0 0 5px;
     grid-area: border;
 }
 
-.project h4 {
-   grid-area: title;
-   margin-top: var(--project-margin);
-   padding: var(--project-padding);
-}
-
 .project .icons {
-   grid-area: icons; 
-   margin-bottom: var(--project-margin);
-   padding: var(--project-padding);
+    align-self: end;
+    display: grid;
+    gap: 20px;
+    grid-auto-flow: column;
+    grid-template: 1fr / repeat(3, 20px);
+    justify-self: self-end;
+    margin-top: 30px;
 }
 
-.project p {
+.project .icons img {
+    width: 20px;
+}
+
+.project--text {
+    display: grid;
     grid-area: text;
-   padding: var(--project-padding);
+    grid-template: repeat(2, min-content) 1fr / 1fr;
+   padding: var(--project-padding); 
 }
 
 .projects {
     display: grid;
+    gap: var(--content-title-gap);
     grid-template: 30px 1fr / 1fr; 
 }
 
 .projects-wrap {
     display: grid;
     gap: 15px;
-    grid-auto-rows: 150px;
+    grid-auto-rows: 1fr;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
 .search {
+   align-items: center;
    display: grid;
-   grid-template: 1fr / 30px 1fr;
+   gap: 20px;
+   grid-template: 1fr / 20px 1fr;
 }
 
 .search-icon {
    grid-column: 1 / 2; 
-   background: green;
 }
 
 .searchfield {
-   background-color: gray; 
+   background-color: var(--background-color); 
+   border: none;
+   border-radius: 18px;
+   padding: 8px;
 }
 
 .sidebar {
@@ -168,15 +189,33 @@
    display: grid;
    gap: 50px;
    grid-area: sidebar;
-   grid-template: 45px repeat(2, min-content)/ 1fr;
+   grid-template: 35px repeat(2, min-content)/ 1fr;
    grid-template-areas:
    "logo"
    "user-menu"
    "settings-menu";
+   padding: 30px;
 }
 
-.sidebar ul li {
+.sidebar nav {
+   display: grid;
+   gap: 15px;
+}
+
+.sidebar a {
    color: var(--sidebar-menu-items); 
+
+   align-items: center;
+   display: grid;
+   font-weight: bold;
+   gap: 10px;
+   grid-template: 1fr / 1fr 5fr;
+   text-decoration: none;
+}
+
+.sidebar a img {
+   justify-self: center;
+   width: 20px; 
 }
 
 .title {
@@ -185,51 +224,93 @@
 }
 
 .trending--post {
+    --image-background-color: gray
+    --image-radius: 50%;
+
+    align-items: center;
     display: grid;
-    grid-template: 1fr 1fr / 1fr 1fr;
+    gap: 20px;
+    grid-template: min-content / 40px 1fr; 
     grid-template-areas:
-    "pic user"
-    "pic project";
+    "pic text";
     margin: var(--post-margin);
     padding: 10px 0;
 }
 
-.trending--post h6 {
-   grid-area: user; 
-}
-
 .trending--post img {
+   background-color: gray;
+   border-radius: 50%;
    grid-area: pic; 
+   height: 40px;
+   padding: 6px;
 }
 
-.trending--post p {
-   grid-area: project; 
+.trending--post:nth-child(2) img {
+   background: yellow; 
+}
+
+.trending--post:nth-child(3) img {
+   background-color: teal; 
+}
+
+.trending--post:last-of-type img {
+   background-color: pink; 
+}
+
+.trending--post--text {
+   grid-area: text; 
 }
 
 .trending--posts {
+    border-radius: var(--content-border-radius);
     display: grid;
     background-color: var(--content-background-color);
     grid-template: repeat(4, 1fr) / 1fr;
 }
 
-.upload-menu ul {
+.upload-menu {
     display: grid;
-    gap: 30px;
+    gap: 20px;
     grid-auto-flow: column;
     grid-template-column: repeat(3, 1fr);
 }
 
-.upload-menu ul li {
+.upload-menu button {
    background-color: var(--accent-color); 
-   border-radius: 5px;
+   border: none;
+   border-radius: 20px;
    color: white;
+   font-weight: bold;
    padding: 10px 0;
    text-align: center;
 }
 
 .user-profile {
+   align-items: center;
    display: grid;
+   gap: 20px;
    grid-auto-flow: column;
+   grid-template: 1fr / 20px 40px auto;
+   justify-content: end;
+}
+
+.user-profile .profilepic-small {
+   background: yellow; 
+   border-radius: 50%;
+   padding: 8px;
+}
+
+.welcome {
+    display: grid;
+    gap: 18px;
+    grid-template: 1fr / 50px 1fr;
+    align-self: center;
+}
+
+.welcome img {
+   background-color: rgb(240 180 41);
+   border-radius: 50%;
+   padding: 8px;
 }
 
 .wrapper {
@@ -238,7 +319,7 @@
     "sidebar header"
     "sidebar content";
     grid-template-columns: 1fr 3fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: min-content 1fr;
     height: 100vh;
     width: 100vw;
 }
