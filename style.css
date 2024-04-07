@@ -180,14 +180,15 @@ h2 {
 .projects-wrap {
     display: grid;
     gap: 15px;
-    grid-auto-rows: 1fr;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-auto-rows: min-content;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 .search {
    align-items: center;
    display: grid;
    gap: 20px;
+   grid-area: search;
    grid-template: 1fr / 20px 1fr;
 }
 
@@ -199,6 +200,7 @@ h2 {
    background-color: var(--background-color); 
    border: none;
    border-radius: 18px;
+   width: min(100%, 500px);
    padding: 8px;
 }
 
@@ -232,6 +234,10 @@ h2 {
    gap: 20px;
    grid-template: 1fr / 1fr 5fr;
    text-decoration: none;
+}
+
+.sidebar a:hover {
+   text-decoration: underline; 
 }
 
 .sidebar a img {
@@ -304,7 +310,7 @@ h2 {
     display: grid;
     gap: 20px;
     grid-auto-flow: column;
-    grid-template-column: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .upload-menu button {
@@ -317,10 +323,15 @@ h2 {
    text-align: center;
 }
 
+.upload-menu button:hover {
+   background-color: var(--background-color); 
+}
+
 .user-profile {
    align-items: center;
    display: grid;
    gap: 20px;
+   grid-area: user-profile;
    grid-auto-flow: column;
    grid-template: 1fr / 20px 40px auto;
    justify-content: end;
@@ -355,3 +366,39 @@ h2 {
     height: 100vh;
     width: 100vw;
 }
+
+@media screen and (max-width: 1200px) {
+    .content {
+        grid-template: 1fr / 2fr 1fr;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .content {
+        grid-template: 1fr / 1fr;
+    }
+
+    .featured {
+        grid-template: 1fr / 1fr 1fr;
+    }
+
+    .header {
+        grid-template: repeat(4, min-content) / 1fr;
+        grid-template-areas:
+        "user-profile"
+        "search"
+        "welcome"
+        "upload-menu";
+    }
+    
+    .user-profile {
+        justify-content: start;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .featured {
+        grid-template: 1fr / 1fr;
+    }
+}
+
